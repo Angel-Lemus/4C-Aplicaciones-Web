@@ -1,173 +1,744 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MecaGest: Formulario de Registro de Nuevos Usuarios - 251007</title>
+    <meta 
+        name="viewport" 
+        content="width=device-width, initial-scale=1.0"
+    >
+    <meta 
+        http-equiv="X-UA-Compatible" 
+        content="IE=edge"
+    >
+    <meta 
+        name="description" 
+        content="Formulario de registro de nuevos usuarios MecaGest Desktop."
+    >
+    <meta 
+        name="author" 
+        content="Angel Leonardo Lemus Escamilla"
+    >
+    <title>MecaGest Desktop - Sistema de Registro de Usuarios</title>
+    <link 
+        rel="stylesheet" 
+        href="style.css"
+    >
+    <script 
+        src="registroscript.js" 
+        defer
+    ></script>
 </head>
 <body>
-    <header>
-        <h1>MecaGest</h1>
-        <h2>Registro de Nuevos Usuarios</h2>
-        <p>Complete los campos para solicitar una cuenta en el sistema.</p>
+
+    <input 
+        type="radio" 
+        name="menu-tabs" 
+        id="tab-registro" 
+        class="tab-radio" 
+        checked
+    >
+    <input 
+        type="radio" 
+        name="menu-tabs" 
+        id="tab-citas" 
+        class="tab-radio"
+    >
+    <input 
+        type="radio" 
+        name="menu-tabs" 
+        id="tab-agendar" 
+        class="tab-radio"
+    >
+    <input 
+        type="radio" 
+        name="menu-tabs" 
+        id="tab-herramientas" 
+        class="tab-radio"
+    >
+    <input 
+        type="radio" 
+        name="menu-tabs" 
+        id="tab-cuenta" 
+        class="tab-radio"
+    >
+    <input 
+        type="radio" 
+        name="menu-tabs" 
+        id="tab-ajustes" 
+        class="tab-radio"
+    >
+
+    <header class="hero-header">
+        <div class="logo-area">
+            <h1>
+                MecaGest 
+                <span>Desktop</span>
+            </h1>
+            <h2>
+                Registro de Nuevos Usuarios
+            </h2>
+            <p>
+                Complete los campos requeridos para solicitar su alta en el sistema de gestión del taller mecánico.
+            </p>
+        </div>
     </header>
 
-    <main>
-        <form action="" method="">
-            <!-- Datos Personales -->
-            <fieldset>
-                <legend>Datos Personales</legend>
-                <label for="nombre">Nombre: </label>
-                <input type="text" id="nombre" placeholder="Angel Leonardo" required>
-                <br>
-                <label for="apPaterno">Apellido Paterno: </label>
-                <input type="text" id="apPaterno" placeholder="Lemus" required>
-                <br>
-                <label for="apMaterno">Apellido Materno: </label>
-                <input type="text" id="apMaterno" placeholder="Escamilla">
-                <br>
-                <label for="genero">Género: </label>
-                <select id="genero">
-                    <option value="F">Femenino</option>
-                    <option value="M" selected>Masculino</option>
-                    <option value="X">Prefiero no decirlo</option>
-                </select>
-                <br>
-                <label for="fechaNacimiento">Fecha de Nacimiento: </label>
-                <input type="date" id="fechaNacimiento" value="2007-07-07">
-                <br>
-            </fieldset>
+    <main class="container">
 
-            <!-- Datos de Contacto -->
-            <fieldset>
-                <legend>Datos de Contacto</legend>
-                <label for="email">Correo Electrónico: </label>
-                <input type="email" id="email" placeholder="angellemusescamilla@gmail.com">
-                <br>
-                <label for="numTelefonico">Número Telefónico: </label>
-                <input type="tel" id="numTelefonico" placeholder="4427394140">
-                <br>
-                <label for="horarioContacto">Favor de contactar en el horario: </label>
-                <input type="time" id="horarioContactoInicio" placeholder="09:00"> a
-                <input type="time" id="horarioContactoFin" placeholder="18:00">
-            </fieldset>
+        <nav 
+            class="stepper" 
+            aria-label="Navegación por pasos del formulario"
+        >
+            <div 
+                class="step active" 
+                id="step-btn-1" 
+                onclick="siguientePaso(1)" 
+                tabindex="0" 
+                role="button"
+            >
+                <span class="step-num">1.</span> 
+                Datos personales
+            </div>
+            <div 
+                class="step" 
+                id="step-btn-2" 
+                onclick="siguientePaso(2)" 
+                tabindex="0" 
+                role="button"
+            >
+                <span class="step-num">2.</span> 
+                Datos de contacto
+            </div>
+            <div 
+                class="step" 
+                id="step-btn-3" 
+                onclick="siguientePaso(3)" 
+                tabindex="0" 
+                role="button"
+            >
+                <span class="step-num">3.</span> 
+                Datos de acceso
+            </div>
+            <div 
+                class="step" 
+                id="step-btn-4" 
+                onclick="siguientePaso(4)" 
+                tabindex="0" 
+                role="button"
+            >
+                <span class="step-num">4.</span> 
+                Datos de ubicación
+            </div>
+        </nav>
 
-            <!-- Datos de Acceso -->
-            <fieldset>
-                <legend>Datos de Acceso</legend>
-                <label for="usuario">Usuario: </label>
-                <input type="text" id="usuario" placeholder="angellemusescamilla" required>
-                <br>
-                <label for="contrasena">Contraseña: </label>
-                <input type="password" id="contrasena" placeholder="**********" required>
-                <br>
-                <label for="confirmarContrasena">Confirmar contraseña: </label>
-                <input type="password" id="confirmarContrasena" placeholder="**********" required>
-            </fieldset>
+        <div 
+            id="alert-banner" 
+            class="alert-banner hidden"
+        ></div>
 
-            <!-- Datos de Ubicación -->
-            <fieldset>
-                <legend>Datos de Ubicación</legend>
-                <label for="direccion">Dirección: </label>
-                <input type="text" id="direccion" placeholder="Calle, Número, Colonia, Ciudad, Estado, CP">
-                <br>
-                <label for="pais">País: </label>
-                <input type="text" id="pais" placeholder="México">
-                <br>
-                <label for="estado">Estado: </label>
-                <input type="text" id="estado" placeholder="Ciudad de México">
-                <br>
-                <label for="ciudad">Ciudad: </label>
-                <input type="text" id="ciudad" placeholder="Ciudad de México">
-                <br>
-                <label for="codigoPostal">Código Postal: </label>
-                <input type="text" id="codigoPostal" placeholder="01234">
-            </fieldset>
+        <form 
+            id="formRegistro" 
+            action="" 
+            method="POST" 
+            enctype="multipart/form-data" 
+            novalidate
+        >
 
-            <br>
-            <input type="checkbox" id="terminos" required>
-            <label for="terminos">Acepto los términos y condiciones del uso de la plataforma MecaGest.</label>
-            <br><br>
+            <section 
+                class="form-step active" 
+                id="step-1"
+            >
+                <h2>
+                    Datos personales
+                </h2>
+                <p class="step-desc">
+                    Ingresa tu nombre completo y datos de identificación personal.
+                </p>
 
-            <input type="submit" value="Enviar Solicitud">
-            <input type="reset" value="Limpiar Formulario">
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="nombre">
+                            Nombre (s) *
+                        </label>
+                        <input 
+                            type="text" 
+                            id="nombre" 
+                            name="nombre" 
+                            required 
+                            placeholder="Angel Leonardo" 
+                            autocomplete="given-name"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="apPaterno">
+                            Apellido paterno *
+                        </label>
+                        <input 
+                            type="text" 
+                            id="apPaterno" 
+                            name="apPaterno" 
+                            required 
+                            placeholder="Lemus" 
+                            autocomplete="family-name"
+                        >
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="apMaterno">
+                            Apellido materno
+                        </label>
+                        <input 
+                            type="text" 
+                            id="apMaterno" 
+                            name="apMaterno" 
+                            placeholder="Escamilla" 
+                            autocomplete="additional-name"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="genero">
+                            Género
+                        </label>
+                        <select 
+                            id="genero" 
+                            name="genero"
+                        >
+                            <option value="">
+                                -- Selecciona una opción --
+                            </option>
+                            <option value="F">
+                                Femenino
+                            </option>
+                            <option value="M" selected>
+                                Masculino
+                            </option>
+                            <option value="X">
+                                Prefiero no decirlo
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="fechaNacimiento">
+                        Fecha de nacimiento
+                    </label>
+                    <input 
+                        type="date" 
+                        id="fechaNacimiento" 
+                        name="fechaNacimiento" 
+                        value="2007-07-07"
+                    >
+                    <br>
+                    <span 
+                        id="mensajeEdad" 
+                        class="field-feedback"
+                    ></span>
+                </div>
+
+                <div class="btn-group align-right">
+                    <button 
+                        type="button" 
+                        class="btn btn-secondary btn-limpiar"
+                    >
+                        Limpiar formulario
+                    </button>
+                    <button 
+                        type="button" 
+                        class="btn btn-primary" 
+                        onclick="siguientePaso(2)"
+                    >
+                        Siguiente &rarr;
+                    </button>
+                </div>
+            </section>
+
+            <section 
+                class="form-step" 
+                id="step-2"
+            >
+                <h2>
+                    Datos de contacto
+                </h2>
+                <p class="step-desc">
+                    Proporciona tus datos de localización directos para notificaciones de servicio.
+                </p>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="email">
+                            Correo electrónico *
+                        </label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            required 
+                            placeholder="angellemusescamilla@gmail.com" 
+                            autocomplete="email"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="numTelefonico">
+                            Número telefónico *
+                        </label>
+                        <input 
+                            type="tel" 
+                            id="numTelefonico" 
+                            name="numTelefonico" 
+                            required 
+                            placeholder="4427394140" 
+                            autocomplete="tel"
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        Favor de contactar en el horario preferido:
+                    </label>
+                    <div class="time-range">
+                        <label 
+                            for="horarioInicio" 
+                            class="label-inline"
+                        >
+                            De:
+                        </label>
+                        <input 
+                            type="time" 
+                            id="horarioInicio" 
+                            name="horarioInicio" 
+                            value="09:00"
+                        >
+                        <label 
+                            for="horarioFin" 
+                            class="label-inline label-margin"
+                        >
+                            A:
+                        </label>
+                        <input 
+                            type="time" 
+                            id="horarioFin" 
+                            name="horarioFin" 
+                            value="18:00"
+                        >
+                    </div>
+                </div>
+
+                <div class="grid-2-qr">
+                    <div class="form-group">
+                        <label>
+                            Redes sociales y mensajería disponibles:
+                        </label>
+                        <div class="checkbox-group">
+                            <label for="chkFb">
+                                <input 
+                                    type="checkbox" 
+                                    id="chkFb" 
+                                    name="chkFb"
+                                > 
+                                Facebook Messenger
+                            </label>
+                            <br>
+                            <label for="chkWa">
+                                <input 
+                                    type="checkbox" 
+                                    id="chkWa" 
+                                    name="chkWa" 
+                                    checked
+                                > 
+                                WhatsApp Business
+                            </label>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="qrInput">
+                                Adjuntar QR de WhatsApp:
+                            </label>
+                            <input 
+                                type="file" 
+                                id="qrInput" 
+                                name="qrInput" 
+                                accept="image/*"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="qr-preview-box">
+                        <p class="qr-title">
+                            Vista previa de WhatsApp
+                        </p>
+                        <div 
+                            id="qrPlaceholder" 
+                            class="qr-placeholder"
+                        >
+                            <span>
+                                Ningún archivo seleccionado
+                            </span>
+                        </div>
+                        <img 
+                            id="qrImg" 
+                            class="qr-img hidden" 
+                            alt="Vista previa de imagen de código QR"
+                        >
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <button 
+                        type="button" 
+                        class="btn btn-secondary" 
+                        onclick="siguientePaso(1)"
+                    >
+                        &larr; Anterior
+                    </button>
+                    <div>
+                        <button 
+                            type="button" 
+                            class="btn btn-secondary btn-limpiar"
+                        >
+                            Limpiar formulario
+                        </button>
+                        <button 
+                            type="button" 
+                            class="btn btn-primary" 
+                            onclick="siguientePaso(3)"
+                        >
+                            Siguiente &rarr;
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section 
+                class="form-step" 
+                id="step-3"
+            >
+                <h2>
+                    Datos de acceso
+                </h2>
+                <p class="step-desc">
+                    Crea tus credenciales únicas de ingreso al sistema.
+                </p>
+
+                <div class="form-group">
+                    <label for="usuario">
+                        Nombre de usuario *
+                    </label>
+                    <input 
+                        type="text" 
+                        id="usuario" 
+                        name="usuario" 
+                        required 
+                        placeholder="angellemusescamilla" 
+                        autocomplete="username"
+                    >
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="contrasena">
+                            Contraseña *
+                        </label>
+                        <input 
+                            type="password" 
+                            id="contrasena" 
+                            name="contrasena" 
+                            required 
+                            placeholder="**********" 
+                            autocomplete="new-password"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmarContrasena">
+                            Confirmar contraseña *
+                        </label>
+                        <input 
+                            type="password" 
+                            id="confirmarContrasena" 
+                            name="confirmarContrasena" 
+                            required 
+                            placeholder="**********" 
+                            autocomplete="new-password"
+                        >
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <button 
+                        type="button" 
+                        class="btn btn-secondary" 
+                        onclick="siguientePaso(2)"
+                    >
+                        &larr; Anterior
+                    </button>
+                    <div>
+                        <button 
+                            type="button" 
+                            class="btn btn-secondary btn-limpiar"
+                        >
+                            Limpiar formulario
+                        </button>
+                        <button 
+                            type="button" 
+                            class="btn btn-primary" 
+                            onclick="siguientePaso(4)"
+                        >
+                            Siguiente &rarr;
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section 
+                class="form-step" 
+                id="step-4"
+            >
+                <h2>
+                    Datos de ubicación
+                </h2>
+                <p class="step-desc">
+                    Ingresa tu dirección de domicilio para registro en sistema.
+                </p>
+
+                <div class="form-group">
+                    <label for="direccion">
+                        Dirección *
+                    </label>
+                    <input 
+                        type="text" 
+                        id="direccion" 
+                        name="direccion" 
+                        required 
+                        placeholder="Calle, Número, Colonia, Ciudad, Estado, CP" 
+                        autocomplete="street-address"
+                    >
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="pais">
+                            País
+                        </label>
+                        <input 
+                            type="text" 
+                            id="pais" 
+                            name="pais" 
+                            value="México" 
+                            autocomplete="country-name"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="estado">
+                            Estado
+                        </label>
+                        <input 
+                            type="text" 
+                            id="estado" 
+                            name="estado" 
+                            placeholder="Ciudad de México" 
+                            autocomplete="address-level1"
+                        >
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="ciudad">
+                            Ciudad
+                        </label>
+                        <input 
+                            type="text" 
+                            id="ciudad" 
+                            name="ciudad" 
+                            placeholder="Ciudad de México" 
+                            autocomplete="address-level2"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="codigoPostal">
+                            Código postal
+                        </label>
+                        <input 
+                            type="text" 
+                            id="codigoPostal" 
+                            name="codigoPostal" 
+                            placeholder="01234" 
+                            autocomplete="postal-code"
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group checkbox-terms">
+                    <label for="terminos">
+                        <input 
+                            type="checkbox" 
+                            id="terminos" 
+                            name="terminos" 
+                            required
+                        > 
+                        Acepto los términos y condiciones del uso de la plataforma <strong>MecaGest</strong>.
+                    </label>
+                </div>
+
+                <div class="btn-group">
+                    <button 
+                        type="button" 
+                        class="btn btn-secondary" 
+                        onclick="siguientePaso(3)"
+                    >
+                        &larr; Anterior
+                    </button>
+                    <div>
+                        <button 
+                            type="button" 
+                            class="btn btn-secondary btn-limpiar"
+                        >
+                            Limpiar formulario
+                        </button>
+                        <button 
+                            type="submit" 
+                            class="btn btn-submit"
+                        >
+                            Enviar solicitud
+                        </button>
+                    </div>
+                </div>
+            </section>
+
         </form>
 
-        <br>
-        <br>
+        <hr class="separator-line">
 
-        <!-- Formulario secundario para citas e interfaz -->
-        <form>
-            <fieldset>
-                <legend>Visualización de Citas por Mes:</legend>
-                <label for="mesCitas">Por favor elige el mes:</label>
-                <input type="month" id="mesCitas">
-                <button id="verCitas">Ver Citas</button>
+        <section class="citas-section">
+            <form 
+                id="formCitas" 
+                action="" 
+                method="GET"
+            >
+                <fieldset class="citas-fieldset">
+                    <legend>
+                        Visualización de Citas por Mes:
+                    </legend>
+                    
+                    <div class="citas-filter">
+                        <label for="mesCitas">
+                            Por favor elige el mes:
+                        </label>
+                        <input 
+                            type="month" 
+                            id="mesCitas" 
+                            name="mesCitas"
+                            value="2026-10"
+                        >
+                        <button 
+                            type="button" 
+                            id="verCitas" 
+                            class="btn btn-primary btn-inline-margin"
+                        >
+                            Ver Citas
+                        </button>
+                    </div>
+
+                    <br>
+                    <h4 id="tituloPeriodoCitas">
+                        Las citas programadas para Octubre de 2026 son:
+                    </h4>
+                    <br>
+
+                    <div class="table-responsive">
+                        <table class="tabla-citas">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Nombre del Cliente y Vehículo</th>
+                                    <th>Descripción de la Reparación</th>
+                                    <th>Fecha Programada</th>
+                                    <th>Estatus Actual</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bodyTablaCitas">
+                                <tr data-mes="2026-10" onclick="seleccionarCita(this)">
+                                    <td>1</td>
+                                    <td>Cita de entrega de unidad reparada con el cliente: Mauricio Mejía, Unidad: Volkswagen, Jetta 2020</td>
+                                    <td>Se realizó un cambio de bujías, la unidad está lista para entrega</td>
+                                    <td>10 de Octubre de 2026</td>
+                                    <td><span class="badge badge-success">Atendida</span></td>
+                                </tr>
+                                <tr data-mes="2026-10" onclick="seleccionarCita(this)">
+                                    <td>2</td>
+                                    <td>Cita de valoración con el cliente: Marco A. Ramírez, Unidad: Renault, Duster 2018</td>
+                                    <td>El cliente solicita una revisión del cuerpo de aceleración de la unidad para posible mantenimiento preventivo.</td>
+                                    <td>20 de Octubre de 2026</td>
+                                    <td><span class="badge badge-warning">Programada</span></td>
+                                </tr>
+                                <tr data-mes="2026-10" onclick="seleccionarCita(this)">
+                                    <td>3</td>
+                                    <td>Cita de revisión con el cliente: Mauricio Mejía, Unidad: Volkswagen, Jetta 2020</td>
+                                    <td>A la unidad se le hicieron cambio de bujías, pero el cliente reporta un sonido extraño.</td>
+                                    <td>17 de Octubre de 2026</td>
+                                    <td><span class="badge badge-warning">Programada</span></td>
+                                </tr>
+                                <tr data-mes="2026-10" onclick="seleccionarCita(this)">
+                                    <td>4</td>
+                                    <td>Cita de valoración con el cliente: Alejandro Romero, Unidad: Toyota, Hilux 2011</td>
+                                    <td>El cliente solicita una revisión del cuerpo de aceleración de la unidad para posible mantenimiento correctivo.</td>
+                                    <td>25 de Octubre de 2026</td>
+                                    <td><span class="badge badge-danger">Cancelada</span></td>
+                                </tr>
+                                <tr data-mes="2026-10" onclick="seleccionarCita(this)">
+                                    <td>5</td>
+                                    <td>Cita de valoración con el cliente: Alejandro Romero, Unidad: Toyota, Hilux 2011</td>
+                                    <td>El cliente solicita una revisión del cuerpo de aceleración de la unidad para posible mantenimiento correctivo.</td>
+                                    <td>28 de Octubre de 2026</td>
+                                    <td><span class="badge badge-info">Reprogramada</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </fieldset>
 
                 <br>
-                <h4>Las citas programadas para el mes elegido son:</h4>
-                <br>
 
-                <table style="border: 1px solid black; width: 100%; border-collapse: collapse;">
-                    <thead>
-                        <tr>
-                            <th style="border: 1px solid black;">No.</th>
-                            <th style="border: 1px solid black;">Nombre</th>
-                            <th style="border: 1px solid black;">Descripción</th>
-                            <th style="border: 1px solid black;">Fecha Programada</th>
-                            <th style="border: 1px solid black;">Estatus Actual</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="border: 1px solid black;">1</td>
-                            <td style="border: 1px solid black;">Cita de entrega de unidad reparada con el cliente: Mauricio Mejía, Unidad: Volkswagen, Jetta 2020</td>
-                            <td style="border: 1px solid black;">Se realizo un cambio de bujias, la unidad esta lista para entrega</td>
-                            <td style="border: 1px solid black;">10 de Octubre de 2026</td>
-                            <td style="border: 1px solid black;">Atendida</td>
-                        </tr>
-                        <tr>
-                            <td style="border: 1px solid black;">2</td>
-                            <td style="border: 1px solid black;">Cita de valoración con el cliente: Marco A. Ramírez, Unidad: Renault, Duster 2018</td>
-                            <td style="border: 1px solid black;">El cliente solicita una revisión del cuerpo de aceleración de la unidad para posible mantenimiento preventivo.</td>
-                            <td style="border: 1px solid black;">20 de Octubre de 2026</td>
-                            <td style="border: 1px solid black;">Programada</td>
-                        </tr>
-                        <tr>
-                            <td style="border: 1px solid black;">3</td>
-                            <td style="border: 1px solid black;">Cita de revisión con el cliente: Mauricio Mejía, Unidad: Volkswagen, Jetta 2020</td>
-                            <td style="border: 1px solid black;">A la unidad se le hicieron cambio de bujias, pero el cliente reporta un sonido extraño.</td>
-                            <td style="border: 1px solid black;">17 de Octubre de 2026</td>
-                            <td style="border: 1px solid black;">Programada</td>
-                        </tr>
-                        <tr>
-                            <td style="border: 1px solid black;">4</td>
-                            <td style="border: 1px solid black;">Cita de valoración con el cliente: Alejandro Romero, Unidad: Toyota, Hilux 2011</td>
-                            <td style="border: 1px solid black;">El cliente solicita una revisión del cuerpo de aceleración de la unidad para posible mantenimiento correctivo.</td>
-                            <td style="border: 1px solid black;">25 de Octubre de 2026</td>
-                            <td style="border: 1px solid black;">Cancelada</td>
-                        </tr>
-                        <tr>
-                            <td style="border: 1px solid black;">5</td>
-                            <td style="border: 1px solid black;">Cita de valoración con el cliente: Alejandro Romero, Unidad: Toyota, Hilux 2011</td>
-                            <td style="border: 1px solid black;">El cliente solicita una revisión del cuerpo de aceleración de la unidad para posible mantenimiento correctivo.</td>
-                            <td style="border: 1px solid black;">28 de Octubre de 2026</td>
-                            <td style="border: 1px solid black;">Reprogramada</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </fieldset>
+                <div class="config-panel">
+                    <h4>
+                        Configuraciones de la Interfaz:
+                    </h4>
+                    <div class="config-item">
+                        <label for="colorFuente">
+                            Color de la Fuente: 
+                        </label>
+                        <input 
+                            type="color" 
+                            id="colorFuente" 
+                            name="colorFuente" 
+                            value="#000000"
+                        >
+                    </div>
+                    <div class="config-item">
+                        <label for="colorFondo">
+                            Color de Fondo: 
+                        </label>
+                        <input 
+                            type="color" 
+                            id="colorFondo" 
+                            name="colorFondo" 
+                            value="#ffffff"
+                        >
+                    </div>
+                </div>
+            </form>
+        </section>
 
-            <br>
-
-            <!-- Configuraciones de la Interfaz -->
-            <h4>Configuraciones de la Interfaz:</h4>
-            <label for="colorFuente">Color de la Fuente: </label>
-            <input type="color" id="colorFuente" value="#000000">
-            <br>
-            <label for="colorFondo">Color de Fondo: </label>
-            <input type="color" id="colorFondo" value="#ffffff">
-        </form>
     </main>
+
+    <footer class="main-footer">
+        <p>
+            &copy; 2026 MecaGest Software Desktop. Todos los derechos reservados.
+        </p>
+    </footer>
+
 </body>
 </html>
