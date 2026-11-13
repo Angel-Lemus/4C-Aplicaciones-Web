@@ -1,0 +1,226 @@
+{
+  "México": {
+    "Aguascalientes": [
+      { "ciudad": "Aguascalientes", "cp": "20000", "colonia": "Centro" }
+    ],
+    "Baja California": [
+      { "ciudad": "Tijuana", "cp": "22000", "colonia": "Centro" },
+      { "ciudad": "Mexicali", "cp": "21000", "colonia": "Centro" }
+    ],
+    "Baja California Sur": [
+      { "ciudad": "La Paz", "cp": "23000", "colonia": "Centro" },
+      { "ciudad": "Cabo San Lucas", "cp": "23450", "colonia": "Centro" }
+    ],
+    "Campeche": [
+      { "ciudad": "Campeche", "cp": "24000", "colonia": "Centro" }
+    ],
+    "Coahuila": [
+      { "ciudad": "Saltillo", "cp": "25000", "colonia": "Centro" },
+      { "ciudad": "Torreón", "cp": "27000", "colonia": "Centro" }
+    ],
+    "Colima": [
+      { "ciudad": "Colima", "cp": "28000", "colonia": "Centro" },
+      { "ciudad": "Manzanillo", "cp": "28200", "colonia": "Centro" }
+    ],
+    "Chiapas": [
+      { "ciudad": "Tuxtla Gutiérrez", "cp": "29000", "colonia": "Centro" },
+      { "ciudad": "San Cristóbal de las Casas", "cp": "29200", "colonia": "Centro" }
+    ],
+    "Chihuahua": [
+      { "ciudad": "Chihuahua", "cp": "31000", "colonia": "Centro" },
+      { "ciudad": "Ciudad Juárez", "cp": "32000", "colonia": "Centro" }
+    ],
+    "Ciudad de México": [
+      { "ciudad": "Cuauhtémoc", "cp": "06000", "colonia": "Centro" },
+      { "ciudad": "Coyoacán", "cp": "04000", "colonia": "Del Carmen" },
+      { "ciudad": "Miguel Hidalgo", "cp": "11560", "colonia": "Polanco" },
+      { "ciudad": "Benito Juárez", "cp": "03100", "colonia": "Del Valle" }
+    ],
+    "Durango": [
+      { "ciudad": "Durango", "cp": "34000", "colonia": "Centro" }
+    ],
+    "Guanajuato": [
+      { "ciudad": "León", "cp": "37000", "colonia": "Centro" },
+      { "ciudad": "Guanajuato", "cp": "36000", "colonia": "Centro" }
+    ],
+    "Guerrero": [
+      { "ciudad": "Chilpancingo", "cp": "39000", "colonia": "Centro" },
+      { "ciudad": "Acapulco", "cp": "39300", "colonia": "Centro" }
+    ],
+    "Hidalgo": [
+      { "ciudad": "Tulancingo de Bravo", "cp": "43600", "colonia": "Tulancingo Centro" },
+      { "ciudad": "Pachuca de Soto", "cp": "42000", "colonia": "Centro" },
+      { "ciudad": "Tizayuca", "cp": "43800", "colonia": "Centro" },
+      { "ciudad": "Huejutla de Reyes", "cp": "43000", "colonia": "Centro" }
+    ],
+    "Jalisco": [
+      { "ciudad": "Guadalajara", "cp": "44100", "colonia": "Centro" },
+      { "ciudad": "Zapopan", "cp": "45100", "colonia": "Centro" }
+    ],
+    "Estado de México": [
+      { "ciudad": "Toluca", "cp": "50000", "colonia": "Centro" },
+      { "ciudad": "Naucalpan de Juárez", "cp": "53000", "colonia": "Centro" },
+      { "ciudad": "Ecatepec", "cp": "55000", "colonia": "San Cristóbal" }
+    ],
+    "Michoacán": [
+      { "ciudad": "Morelia", "cp": "58000", "colonia": "Centro" },
+      { "ciudad": "Uruapan", "cp": "60000", "colonia": "Centro" }
+    ],
+    "Morelos": [
+      { "ciudad": "Cuernavaca", "cp": "62000", "colonia": "Centro" }
+    ],
+    "Nayarit": [
+      { "ciudad": "Tepic", "cp": "63000", "colonia": "Centro" }
+    ],
+    "Nuevo León": [
+      { "ciudad": "Monterrey", "cp": "64000", "colonia": "Centro" },
+      { "ciudad": "San Pedro Garza García", "cp": "66200", "colonia": "Del Valle" }
+    ],
+    "Oaxaca": [
+      { "ciudad": "Oaxaca de Juárez", "cp": "68000", "colonia": "Centro" }
+    ],
+    "Puebla": [
+      { "ciudad": "Xicotepec", "cp": "73080", "colonia": "Xicotepec de Juárez Centro" },
+      { "ciudad": "Huauchinango", "cp": "73170", "colonia": "Huauchinango Centro" },
+      { "ciudad": "Puebla", "cp": "72000", "colonia": "Centro" },
+      { "ciudad": "Tehuacán", "cp": "75700", "colonia": "Centro" },
+      { "ciudad": "Zacatlán", "cp": "73310", "colonia": "Centro" },
+      { "ciudad": "Chignahuapan", "cp": "73300", "colonia": "Centro" }
+    ],
+    "Querétaro": [
+      { "ciudad": "Querétaro", "cp": "76000", "colonia": "Centro" },
+      { "ciudad": "San Juan del Río", "cp": "76800", "colonia": "Centro" }
+    ],
+    "Quintana Roo": [
+      { "ciudad": "Cancún", "cp": "77500", "colonia": "Centro" },
+      { "ciudad": "Chetumal", "cp": "77000", "colonia": "Centro" }
+    ],
+    "San Luis Potosí": [
+      { "ciudad": "San Luis Potosí", "cp": "78000", "colonia": "Centro" }
+    ],
+    "Sinaloa": [
+      { "ciudad": "Culiacán", "cp": "80000", "colonia": "Centro" },
+      { "ciudad": "Mazatlán", "cp": "82000", "colonia": "Centro" }
+    ],
+    "Sonora": [
+      { "ciudad": "Hermosillo", "cp": "83000", "colonia": "Centro" }
+    ],
+    "Tabasco": [
+      { "ciudad": "Villahermosa", "cp": "86000", "colonia": "Centro" }
+    ],
+    "Tamaulipas": [
+      { "ciudad": "Ciudad Victoria", "cp": "87000", "colonia": "Centro" },
+      { "ciudad": "Tampico", "cp": "89000", "colonia": "Centro" }
+    ],
+    "Tlaxcala": [
+      { "ciudad": "Tlaxcala", "cp": "90000", "colonia": "Centro" }
+    ],
+    "Veracruz": [
+      { "ciudad": "Xalapa", "cp": "91000", "colonia": "Centro" },
+      { "ciudad": "Veracruz", "cp": "91700", "colonia": "Centro" },
+      { "ciudad": "Poza Rica", "cp": "93200", "colonia": "Centro" },
+      { "ciudad": "Tuxpan", "cp": "92800", "colonia": "Centro" }
+    ],
+    "Yucatán": [
+      { "ciudad": "Mérida", "cp": "97000", "colonia": "Centro" }
+    ],
+    "Zacatecas": [
+      { "ciudad": "Zacatecas", "cp": "98000", "colonia": "Centro" }
+    ]
+  },
+  "Estados Unidos": {
+    "California": [
+      { "ciudad": "Los Ángeles", "cp": "90001", "colonia": "Downtown" },
+      { "ciudad": "San Diego", "cp": "92101", "colonia": "Gaslamp" },
+      { "ciudad": "San Francisco", "cp": "94102", "colonia": "Civic Center" }
+    ],
+    "Texas": [
+      { "ciudad": "Houston", "cp": "77001", "colonia": "Downtown" },
+      { "ciudad": "Dallas", "cp": "75201", "colonia": "Arts District" },
+      { "ciudad": "Austin", "cp": "78701", "colonia": "Downtown" },
+      { "ciudad": "San Antonio", "cp": "78205", "colonia": "Alamo Plaza" }
+    ],
+    "Nueva York": [
+      { "ciudad": "Nueva York", "cp": "10001", "colonia": "Manhattan" },
+      { "ciudad": "Búfalo", "cp": "14201", "colonia": "Downtown" }
+    ],
+    "Florida": [
+      { "ciudad": "Miami", "cp": "33101", "colonia": "Brickell" },
+      { "ciudad": "Orlando", "cp": "32801", "colonia": "Downtown" }
+    ],
+    "Illinois": [
+      { "ciudad": "Chicago", "cp": "60601", "colonia": "The Loop" }
+    ],
+    "Arizona": [
+      { "ciudad": "Phoenix", "cp": "85001", "colonia": "Downtown" }
+    ]
+  },
+  "Canadá": {
+    "Ontario": [
+      { "ciudad": "Toronto", "cp": "M5H 2N2", "colonia": "Downtown" },
+      { "ciudad": "Ottawa", "cp": "K1P 1J1", "colonia": "Centretown" }
+    ],
+    "Quebec": [
+      { "ciudad": "Montreal", "cp": "H2Y 1C6", "colonia": "Vieux-Montréal" },
+      { "ciudad": "Quebec", "cp": "G1R 4P5", "colonia": "Vieux-Québec" }
+    ],
+    "Columbia Británica": [
+      { "ciudad": "Vancouver", "cp": "V6B 1A1", "colonia": "Gastown" },
+      { "ciudad": "Victoria", "cp": "V8W 1W5", "colonia": "Inner Harbour" }
+    ],
+    "Alberta": [
+      { "ciudad": "Calgary", "cp": "T2P 1J9", "colonia": "Downtown" },
+      { "ciudad": "Edmonton", "cp": "T5J 0N3", "colonia": "Downtown" }
+    ]
+  },
+  "Guatemala": {
+    "Guatemala": [
+      { "ciudad": "Ciudad de Guatemala", "cp": "01001", "colonia": "Zona 1" },
+      { "ciudad": "Mixco", "cp": "01057", "colonia": "Centro" }
+    ],
+    "Sacatepéquez": [
+      { "ciudad": "Antigua Guatemala", "cp": "03001", "colonia": "Centro Histórico" }
+    ],
+    "Quetzaltenango": [
+      { "ciudad": "Quetzaltenango", "cp": "09001", "colonia": "Zona 1" }
+    ],
+    "Petén": [
+      { "ciudad": "Flores", "cp": "17001", "colonia": "Isla de Flores" }
+    ]
+  },
+  "Colombia": {
+    "Bogotá D.C.": [
+      { "ciudad": "Bogotá", "cp": "110111", "colonia": "La Candelaria" }
+    ],
+    "Antioquia": [
+      { "ciudad": "Medellín", "cp": "050001", "colonia": "El Poblado" },
+      { "ciudad": "Envigado", "cp": "055420", "colonia": "Centro" }
+    ],
+    "Valle del Cauca": [
+      { "ciudad": "Cali", "cp": "760001", "colonia": "San Antonio" }
+    ],
+    "Atlántico": [
+      { "ciudad": "Barranquilla", "cp": "080001", "colonia": "El Prado" }
+    ],
+    "Bolívar": [
+      { "ciudad": "Cartagena", "cp": "130001", "colonia": "Centro Histórico" }
+    ]
+  },
+  "España": {
+    "Comunidad de Madrid": [
+      { "ciudad": "Madrid", "cp": "28001", "colonia": "Salamanca" },
+      { "ciudad": "Alcalá de Henares", "cp": "28801", "colonia": "Centro" }
+    ],
+    "Cataluña": [
+      { "ciudad": "Barcelona", "cp": "08001", "colonia": "Ciutat Vella" },
+      { "ciudad": "Girona", "cp": "17001", "colonia": "Barri Vell" }
+    ],
+    "Andalucía": [
+      { "ciudad": "Sevilla", "cp": "41001", "colonia": "Casco Antiguo" },
+      { "ciudad": "Málaga", "cp": "29001", "colonia": "Centro" }
+    ],
+    "Comunidad Valenciana": [
+      { "ciudad": "Valencia", "cp": "46001", "colonia": "Ciutat Vella" }
+    ]
+  }
+}
