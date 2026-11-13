@@ -1,173 +1,1766 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MecaGest: Formulario de Registro de Nuevos Usuarios - 251007</title>
+    <meta 
+        name="viewport" 
+        content="width=device-width, initial-scale=1.0"
+    >
+    <meta 
+        http-equiv="X-UA-Compatible" 
+        content="IE=edge"
+    >
+    <meta 
+        name="description" 
+        content="Formulario de registro de nuevos usuarios MecaGest Desktop."
+    >
+    <meta 
+        name="author" 
+        content="Angel Leonardo Lemus Escamilla"
+    >
+    <title>MecaGest Desktop - Sistema de Registro de Usuarios</title>
+    <link 
+        rel="stylesheet" 
+        href="style.css"
+    >
+    <script 
+        src="registroscript.js" 
+        defer
+    ></script>
+
+    <style>
+        /* =========================================================
+           TEMA ROJO CON GRIS PARA TODA LA INTERFAZ
+           ========================================================= */
+        body {
+            background-color: #e5e7eb !important;
+            color: #1f2937;
+        }
+        .hero-header {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 60%, #991b1b 100%) !important;
+            border-bottom: 4px solid #dc2626 !important;
+            color: #ffffff !important;
+        }
+        .hero-header .logo-area h1 span {
+            color: #f87171 !important;
+        }
+        .container {
+            background-color: #f9fafb !important;
+            border: 1px solid #d1d5db !important;
+            box-shadow: 0 10px 25px rgba(31, 41, 55, 0.15) !important;
+        }
+        .main-footer {
+            background-color: #1f2937 !important;
+            color: #d1d5db !important;
+            border-top: 3px solid #dc2626 !important;
+        }
+
+        /* Barra de apartados en Gris Oscuro y Rojo */
+        .tab-radio {
+            display: none;
+        }
+        .barra-apartados {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            background-color: #1f2937;
+            padding: 12px 20px;
+            border-bottom: 2px solid #4b5563;
+        }
+        .barra-apartados label {
+            color: #e5e7eb;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+        .barra-apartados label:hover {
+            background-color: #374151;
+            color: #ffffff;
+        }
+        #tab-registro:checked ~ .barra-apartados label[for="tab-registro"],
+        #tab-citas:checked ~ .barra-apartados label[for="tab-citas"],
+        #tab-herramientas:checked ~ .barra-apartados label[for="tab-herramientas"],
+        #tab-ajustes:checked ~ .barra-apartados label[for="tab-ajustes"] {
+            background-color: #dc2626 !important;
+            color: #ffffff !important;
+        }
+
+        /* Pasos (Stepper) en Rojo y Gris */
+        .stepper .step {
+            background-color: #e5e7eb !important;
+            color: #374151 !important;
+            border: 1px solid #d1d5db !important;
+        }
+        .stepper .step:hover {
+            background-color: #d1d5db !important;
+        }
+        .stepper .step.active {
+            background-color: #dc2626 !important;
+            color: #ffffff !important;
+            border-color: #b91c1c !important;
+        }
+
+        /* Botones Principales en Rojo y Secundarios en Gris */
+        .btn-primary,
+        .btn-submit {
+            background-color: #dc2626 !important;
+            border-color: #b91c1c !important;
+            color: #ffffff !important;
+        }
+        .btn-primary:hover,
+        .btn-submit:hover {
+            background-color: #b91c1c !important;
+        }
+        .btn-secondary {
+            background-color: #4b5563 !important;
+            border-color: #374151 !important;
+            color: #ffffff !important;
+        }
+        .btn-secondary:hover {
+            background-color: #374151 !important;
+        }
+
+        /* Inputs y tablas con acentos Rojo y Gris */
+        input:focus,
+        select:focus {
+            border-color: #dc2626 !important;
+            outline: 2px solid rgba(220, 38, 38, 0.25) !important;
+        }
+        .tabla-citas thead th {
+            background-color: #374151 !important;
+            color: #ffffff !important;
+            border-bottom: 3px solid #dc2626 !important;
+        }
+        .citas-fieldset {
+            border: 1px solid #9ca3af !important;
+            background-color: #f3f4f6 !important;
+        }
+        .citas-fieldset legend {
+            color: #991b1b !important;
+            font-weight: 700 !important;
+        }
+
+        .panel-apartado {
+            display: none;
+        }
+        #tab-registro:checked ~ main #apartado-registro {
+            display: block;
+        }
+        #tab-citas:checked ~ main #apartado-citas {
+            display: block;
+        }
+        #tab-herramientas:checked ~ main #apartado-herramientas {
+            display: block;
+        }
+        #tab-ajustes:checked ~ main #apartado-ajustes {
+            display: block;
+        }
+        .password-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .password-wrapper input {
+            width: 100%;
+            padding-right: 40px;
+        }
+        .toggle-pass {
+            position: absolute;
+            right: 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        .btn-quitar-foto {
+            margin-top: 10px;
+            background-color: #991b1b;
+            color: #ffffff;
+            border: none;
+            padding: 7px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        .btn-quitar-foto:hover {
+            background-color: #7f1d1d;
+        }
+        .error-archivo-msg {
+            color: #991b1b;
+            background-color: #fee2e2;
+            border: 2px solid #dc2626;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+        .input-error-borde {
+            border: 2px solid #dc2626 !important;
+            background-color: #fef2f2 !important;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>MecaGest</h1>
-        <h2>Registro de Nuevos Usuarios</h2>
-        <p>Complete los campos para solicitar una cuenta en el sistema.</p>
+
+    <input 
+        type="radio" 
+        name="menu-tabs" 
+        id="tab-registro" 
+        class="tab-radio" 
+        checked
+    >
+    <input 
+        type="radio" 
+        name="menu-tabs" 
+        id="tab-citas" 
+        class="tab-radio"
+    >
+    <input 
+        type="radio" 
+        name="menu-tabs" 
+        id="tab-agendar" 
+        class="tab-radio"
+    >
+    <input 
+        type="radio" 
+        name="menu-tabs" 
+        id="tab-herramientas" 
+        class="tab-radio"
+    >
+    <input 
+        type="radio" 
+        name="menu-tabs" 
+        id="tab-cuenta" 
+        class="tab-radio"
+    >
+    <input 
+        type="radio" 
+        name="menu-tabs" 
+        id="tab-ajustes" 
+        class="tab-radio"
+    >
+
+    <header class="hero-header">
+        <div class="logo-area">
+            <h1>
+                MecaGest 
+                <span>Desktop</span>
+            </h1>
+            <h2>
+                Registro de Nuevos Usuarios
+            </h2>
+            <p>
+                Complete los campos requeridos para solicitar su alta en el sistema de gestión del taller mecánico.
+            </p>
+        </div>
     </header>
 
-    <main>
-        <form action="" method="">
-            <!-- Datos Personales -->
-            <fieldset>
-                <legend>Datos Personales</legend>
-                <label for="nombre">Nombre: </label>
-                <input type="text" id="nombre" placeholder="Angel Leonardo" required>
-                <br>
-                <label for="apPaterno">Apellido Paterno: </label>
-                <input type="text" id="apPaterno" placeholder="Lemus" required>
-                <br>
-                <label for="apMaterno">Apellido Materno: </label>
-                <input type="text" id="apMaterno" placeholder="Escamilla">
-                <br>
-                <label for="genero">Género: </label>
-                <select id="genero">
-                    <option value="F">Femenino</option>
-                    <option value="M" selected>Masculino</option>
-                    <option value="X">Prefiero no decirlo</option>
-                </select>
-                <br>
-                <label for="fechaNacimiento">Fecha de Nacimiento: </label>
-                <input type="date" id="fechaNacimiento" value="2007-07-07">
-                <br>
-            </fieldset>
+    <nav class="barra-apartados" aria-label="Menú de apartados del sistema">
+        <label for="tab-registro">Registro de Usuarios</label>
+        <label for="tab-citas">Visualización de Citas</label>
+        <label for="tab-herramientas">Refacciones y Herramientas</label>
+        <label for="tab-ajustes">Configuración de Interfaz</label>
+    </nav>
 
-            <!-- Datos de Contacto -->
-            <fieldset>
-                <legend>Datos de Contacto</legend>
-                <label for="email">Correo Electrónico: </label>
-                <input type="email" id="email" placeholder="angellemusescamilla@gmail.com">
-                <br>
-                <label for="numTelefonico">Número Telefónico: </label>
-                <input type="tel" id="numTelefonico" placeholder="4427394140">
-                <br>
-                <label for="horarioContacto">Favor de contactar en el horario: </label>
-                <input type="time" id="horarioContactoInicio" placeholder="09:00"> a
-                <input type="time" id="horarioContactoFin" placeholder="18:00">
-            </fieldset>
+    <main class="container">
 
-            <!-- Datos de Acceso -->
-            <fieldset>
-                <legend>Datos de Acceso</legend>
-                <label for="usuario">Usuario: </label>
-                <input type="text" id="usuario" placeholder="angellemusescamilla" required>
-                <br>
-                <label for="contrasena">Contraseña: </label>
-                <input type="password" id="contrasena" placeholder="**********" required>
-                <br>
-                <label for="confirmarContrasena">Confirmar contraseña: </label>
-                <input type="password" id="confirmarContrasena" placeholder="**********" required>
-            </fieldset>
+        <!-- =========================================================
+             APARTADO 1: REGISTRO DE USUARIOS
+             ========================================================= -->
+        <div id="apartado-registro" class="panel-apartado">
 
-            <!-- Datos de Ubicación -->
-            <fieldset>
-                <legend>Datos de Ubicación</legend>
-                <label for="direccion">Dirección: </label>
-                <input type="text" id="direccion" placeholder="Calle, Número, Colonia, Ciudad, Estado, CP">
-                <br>
-                <label for="pais">País: </label>
-                <input type="text" id="pais" placeholder="México">
-                <br>
-                <label for="estado">Estado: </label>
-                <input type="text" id="estado" placeholder="Ciudad de México">
-                <br>
-                <label for="ciudad">Ciudad: </label>
-                <input type="text" id="ciudad" placeholder="Ciudad de México">
-                <br>
-                <label for="codigoPostal">Código Postal: </label>
-                <input type="text" id="codigoPostal" placeholder="01234">
-            </fieldset>
+            <nav 
+                class="stepper" 
+                aria-label="Navegación por pasos del formulario"
+            >
+                <div 
+                    class="step active" 
+                    id="step-btn-1" 
+                    onclick="irAPasoValidado(1)" 
+                    tabindex="0" 
+                    role="button"
+                >
+                    <span class="step-num">1.</span> 
+                    Datos personales
+                </div>
+                <div 
+                    class="step" 
+                    id="step-btn-2" 
+                    onclick="irAPasoValidado(2)" 
+                    tabindex="0" 
+                    role="button"
+                >
+                    <span class="step-num">2.</span> 
+                    Datos de contacto
+                </div>
+                <div 
+                    class="step" 
+                    id="step-btn-3" 
+                    onclick="irAPasoValidado(3)" 
+                    tabindex="0" 
+                    role="button"
+                >
+                    <span class="step-num">3.</span> 
+                    Datos de acceso
+                </div>
+                <div 
+                    class="step" 
+                    id="step-btn-4" 
+                    onclick="irAPasoValidado(4)" 
+                    tabindex="0" 
+                    role="button"
+                >
+                    <span class="step-num">4.</span> 
+                    Datos de ubicación
+                </div>
+            </nav>
 
-            <br>
-            <input type="checkbox" id="terminos" required>
-            <label for="terminos">Acepto los términos y condiciones del uso de la plataforma MecaGest.</label>
-            <br><br>
+            <div 
+                id="alert-banner" 
+                class="alert-banner hidden"
+            ></div>
 
-            <input type="submit" value="Enviar Solicitud">
-            <input type="reset" value="Limpiar Formulario">
-        </form>
+            <form 
+                id="formRegistro" 
+                action="" 
+                method="POST" 
+                enctype="multipart/form-data" 
+                novalidate
+            >
 
-        <br>
-        <br>
+                <!-- PASO 1: DATOS PERSONALES -->
+                <section 
+                    class="form-step active" 
+                    id="step-1"
+                >
+                    <h2>
+                        Datos personales
+                    </h2>
+                    <p class="step-desc">
+                        Ingresa tu nombre completo y datos de identificación personal.
+                    </p>
 
-        <!-- Formulario secundario para citas e interfaz -->
-        <form>
-            <fieldset>
-                <legend>Visualización de Citas por Mes:</legend>
-                <label for="mesCitas">Por favor elige el mes:</label>
-                <input type="month" id="mesCitas">
-                <button id="verCitas">Ver Citas</button>
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="nombre">
+                                Nombre (s) *
+                            </label>
+                            <input 
+                                type="text" 
+                                id="nombre" 
+                                name="nombre" 
+                                required 
+                                placeholder="Angel Leonardo" 
+                                autocomplete="given-name"
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label for="apPaterno">
+                                Apellido paterno *
+                            </label>
+                            <input 
+                                type="text" 
+                                id="apPaterno" 
+                                name="apPaterno" 
+                                required 
+                                placeholder="Lemus" 
+                                autocomplete="family-name"
+                            >
+                        </div>
+                    </div>
 
-                <br>
-                <h4>Las citas programadas para el mes elegido son:</h4>
-                <br>
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="apMaterno">
+                                Apellido materno
+                            </label>
+                            <input 
+                                type="text" 
+                                id="apMaterno" 
+                                name="apMaterno" 
+                                placeholder="Escamilla" 
+                                autocomplete="additional-name"
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label for="genero">
+                                Género
+                            </label>
+                            <select 
+                                id="genero" 
+                                name="genero"
+                            >
+                                <option value="">
+                                    -- Selecciona una opción --
+                                </option>
+                                <option value="F">
+                                    Femenino
+                                </option>
+                                <option value="M" selected>
+                                    Masculino
+                                </option>
+                                <option value="X">
+                                    Prefiero no decirlo
+                                </option>
+                            </select>
+                        </div>
+                    </div>
 
-                <table style="border: 1px solid black; width: 100%; border-collapse: collapse;">
-                    <thead>
-                        <tr>
-                            <th style="border: 1px solid black;">No.</th>
-                            <th style="border: 1px solid black;">Nombre</th>
-                            <th style="border: 1px solid black;">Descripción</th>
-                            <th style="border: 1px solid black;">Fecha Programada</th>
-                            <th style="border: 1px solid black;">Estatus Actual</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="border: 1px solid black;">1</td>
-                            <td style="border: 1px solid black;">Cita de entrega de unidad reparada con el cliente: Mauricio Mejía, Unidad: Volkswagen, Jetta 2020</td>
-                            <td style="border: 1px solid black;">Se realizo un cambio de bujias, la unidad esta lista para entrega</td>
-                            <td style="border: 1px solid black;">10 de Octubre de 2026</td>
-                            <td style="border: 1px solid black;">Atendida</td>
-                        </tr>
-                        <tr>
-                            <td style="border: 1px solid black;">2</td>
-                            <td style="border: 1px solid black;">Cita de valoración con el cliente: Marco A. Ramírez, Unidad: Renault, Duster 2018</td>
-                            <td style="border: 1px solid black;">El cliente solicita una revisión del cuerpo de aceleración de la unidad para posible mantenimiento preventivo.</td>
-                            <td style="border: 1px solid black;">20 de Octubre de 2026</td>
-                            <td style="border: 1px solid black;">Programada</td>
-                        </tr>
-                        <tr>
-                            <td style="border: 1px solid black;">3</td>
-                            <td style="border: 1px solid black;">Cita de revisión con el cliente: Mauricio Mejía, Unidad: Volkswagen, Jetta 2020</td>
-                            <td style="border: 1px solid black;">A la unidad se le hicieron cambio de bujias, pero el cliente reporta un sonido extraño.</td>
-                            <td style="border: 1px solid black;">17 de Octubre de 2026</td>
-                            <td style="border: 1px solid black;">Programada</td>
-                        </tr>
-                        <tr>
-                            <td style="border: 1px solid black;">4</td>
-                            <td style="border: 1px solid black;">Cita de valoración con el cliente: Alejandro Romero, Unidad: Toyota, Hilux 2011</td>
-                            <td style="border: 1px solid black;">El cliente solicita una revisión del cuerpo de aceleración de la unidad para posible mantenimiento correctivo.</td>
-                            <td style="border: 1px solid black;">25 de Octubre de 2026</td>
-                            <td style="border: 1px solid black;">Cancelada</td>
-                        </tr>
-                        <tr>
-                            <td style="border: 1px solid black;">5</td>
-                            <td style="border: 1px solid black;">Cita de valoración con el cliente: Alejandro Romero, Unidad: Toyota, Hilux 2011</td>
-                            <td style="border: 1px solid black;">El cliente solicita una revisión del cuerpo de aceleración de la unidad para posible mantenimiento correctivo.</td>
-                            <td style="border: 1px solid black;">28 de Octubre de 2026</td>
-                            <td style="border: 1px solid black;">Reprogramada</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </fieldset>
+                    <div class="form-group">
+                        <label for="fechaNacimiento">
+                            Fecha de nacimiento
+                        </label>
+                        <input 
+                            type="date" 
+                            id="fechaNacimiento" 
+                            name="fechaNacimiento" 
+                            value="2007-07-07"
+                        >
+                        <br>
+                        <span 
+                            id="mensajeEdad" 
+                            class="field-feedback"
+                            style="display: inline-block; margin-top: 6px; font-weight: 600;"
+                        ></span>
+                    </div>
 
-            <br>
+                    <div class="btn-group align-right">
+                        <button 
+                            type="button" 
+                            class="btn btn-secondary btn-limpiar"
+                        >
+                            Limpiar formulario
+                        </button>
+                        <button 
+                            type="button" 
+                            class="btn btn-primary" 
+                            onclick="irAPasoValidado(2)"
+                        >
+                            Siguiente &rarr;
+                        </button>
+                    </div>
+                </section>
 
-            <!-- Configuraciones de la Interfaz -->
-            <h4>Configuraciones de la Interfaz:</h4>
-            <label for="colorFuente">Color de la Fuente: </label>
-            <input type="color" id="colorFuente" value="#000000">
-            <br>
-            <label for="colorFondo">Color de Fondo: </label>
-            <input type="color" id="colorFondo" value="#ffffff">
-        </form>
+                <!-- PASO 2: DATOS DE CONTACTO -->
+                <section 
+                    class="form-step" 
+                    id="step-2"
+                >
+                    <h2>
+                        Datos de contacto
+                    </h2>
+                    <p class="step-desc">
+                        Proporciona tus datos de localización directos para notificaciones de servicio.
+                    </p>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="email">
+                                Correo electrónico *
+                            </label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                required 
+                                placeholder="angellemusescamilla@gmail.com" 
+                                autocomplete="email"
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label for="numTelefonico">
+                                Número telefónico *
+                            </label>
+                            <input 
+                                type="tel" 
+                                id="numTelefonico" 
+                                name="numTelefonico" 
+                                required 
+                                placeholder="4427394140" 
+                                autocomplete="tel"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="telFijo">
+                                Teléfono fijo
+                            </label>
+                            <input 
+                                type="tel" 
+                                id="telFijo" 
+                                name="telFijo" 
+                                placeholder="Opcional"
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Favor de contactar en el horario preferido:
+                            </label>
+                            <div class="time-range">
+                                <label 
+                                    for="horarioInicio" 
+                                    class="label-inline"
+                                >
+                                    De:
+                                </label>
+                                <input 
+                                    type="time" 
+                                    id="horarioInicio" 
+                                    name="horarioInicio" 
+                                    value="09:00"
+                                >
+                                <label 
+                                    for="horarioFin" 
+                                    class="label-inline label-margin"
+                                >
+                                    A:
+                                </label>
+                                <input 
+                                    type="time" 
+                                    id="horarioFin" 
+                                    name="horarioFin" 
+                                    value="18:00"
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid-2-qr">
+                        <div class="form-group">
+                            <label>
+                                Redes sociales y mensajería disponibles:
+                            </label>
+                            <div class="checkbox-group">
+                                <label for="chkFb">
+                                    <input 
+                                        type="checkbox" 
+                                        id="chkFb" 
+                                        name="chkFb"
+                                    > 
+                                    Facebook Messenger
+                                </label>
+                                <input 
+                                    type="url" 
+                                    id="urlFb" 
+                                    name="urlFb" 
+                                    placeholder="https://www.facebook.com/userName"
+                                    style="margin-top: 4px;"
+                                >
+                                <br><br>
+                                <label for="chkIn">
+                                    <input 
+                                        type="checkbox" 
+                                        id="chkIn" 
+                                        name="chkIn"
+                                    > 
+                                    LinkedIn
+                                </label>
+                                <input 
+                                    type="url" 
+                                    id="urlIn" 
+                                    name="urlIn" 
+                                    placeholder="https://www.linkedin.com/in/userName"
+                                    style="margin-top: 4px;"
+                                >
+                                <br><br>
+                                <label for="chkWa">
+                                    <input 
+                                        type="checkbox" 
+                                        id="chkWa" 
+                                        name="chkWa" 
+                                        checked
+                                    > 
+                                    WhatsApp Business
+                                </label>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="qrInput">
+                                    Adjuntar QR de WhatsApp (Solo imágenes):
+                                </label>
+                                <input 
+                                    type="file" 
+                                    id="qrInput" 
+                                    name="qrInput" 
+                                    accept="image/png, image/jpeg, image/jpg, image/gif, image/webp"
+                                >
+                                <div id="errorQrMsg" class="error-archivo-msg hidden"></div>
+                            </div>
+                        </div>
+
+                        <div class="qr-preview-box">
+                            <p class="qr-title">
+                                Vista previa de WhatsApp
+                            </p>
+                            <div 
+                                id="qrPlaceholder" 
+                                class="qr-placeholder"
+                            >
+                                <span>
+                                    Ningún archivo seleccionado
+                                </span>
+                            </div>
+                            <img 
+                                id="qrImg" 
+                                class="qr-img hidden" 
+                                alt="Vista previa de imagen de código QR"
+                            >
+                            <button 
+                                type="button" 
+                                id="btnQuitarQr" 
+                                class="btn-quitar-foto hidden"
+                                onclick="quitarFotoWhatsApp()"
+                            >
+                                Quitar foto
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="btn-group">
+                        <button 
+                            type="button" 
+                            class="btn btn-secondary" 
+                            onclick="irAPasoValidado(1)"
+                        >
+                            &larr; Anterior
+                        </button>
+                        <div>
+                            <button 
+                                type="button" 
+                                class="btn btn-secondary btn-limpiar"
+                            >
+                                Limpiar formulario
+                            </button>
+                            <button 
+                                type="button" 
+                                class="btn btn-primary" 
+                                onclick="irAPasoValidado(3)"
+                            >
+                                Siguiente &rarr;
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PASO 3: DATOS DE ACCESO -->
+                <section 
+                    class="form-step" 
+                    id="step-3"
+                >
+                    <h2>
+                        Datos de acceso
+                    </h2>
+                    <p class="step-desc">
+                        Crea tus credenciales únicas de ingreso al sistema.
+                    </p>
+
+                    <div class="form-group">
+                        <label for="usuario">
+                            Nombre de usuario *
+                        </label>
+                        <input 
+                            type="text" 
+                            id="usuario" 
+                            name="usuario" 
+                            required 
+                            placeholder="angellemusescamilla" 
+                            autocomplete="username"
+                        >
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="contrasena">
+                                Contraseña *
+                            </label>
+                            <div class="password-wrapper">
+                                <input 
+                                    type="password" 
+                                    id="contrasena" 
+                                    name="contrasena" 
+                                    required 
+                                    placeholder="**********" 
+                                    autocomplete="new-password"
+                                >
+                                <button 
+                                    type="button" 
+                                    class="toggle-pass" 
+                                    onclick="verPassword('contrasena')" 
+                                    title="Mostrar/Ocultar contraseña"
+                                >
+                                    👁️
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmarContrasena">
+                                Confirmar contraseña *
+                            </label>
+                            <div class="password-wrapper">
+                                <input 
+                                    type="password" 
+                                    id="confirmarContrasena" 
+                                    name="confirmarContrasena" 
+                                    required 
+                                    placeholder="**********" 
+                                    autocomplete="new-password"
+                                >
+                                <button 
+                                    type="button" 
+                                    class="toggle-pass" 
+                                    onclick="verPassword('confirmarContrasena')" 
+                                    title="Mostrar/Ocultar contraseña"
+                                >
+                                    👁️
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="errorPassMsg" class="error-archivo-msg hidden"></div>
+
+                    <div class="btn-group">
+                        <button 
+                            type="button" 
+                            class="btn btn-secondary" 
+                            onclick="irAPasoValidado(2)"
+                        >
+                            &larr; Anterior
+                        </button>
+                        <div>
+                            <button 
+                                type="button" 
+                                class="btn btn-secondary btn-limpiar"
+                            >
+                                Limpiar formulario
+                            </button>
+                            <button 
+                                type="button" 
+                                class="btn btn-primary" 
+                                onclick="validarYContinuarPaso4()"
+                            >
+                                Siguiente &rarr;
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PASO 4: DATOS DE UBICACIÓN -->
+                <section 
+                    class="form-step" 
+                    id="step-4"
+                >
+                    <h2>
+                        Datos de ubicación
+                    </h2>
+                    <p class="step-desc">
+                        Ingresa tu dirección de domicilio para registro en sistema.
+                    </p>
+
+                    <div class="form-group">
+                        <label for="direccion">
+                            Dirección *
+                        </label>
+                        <input 
+                            type="text" 
+                            id="direccion" 
+                            name="direccion" 
+                            required 
+                            placeholder="Calle, Número, Colonia, Ciudad, Estado, CP" 
+                            autocomplete="street-address"
+                        >
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="pais">
+                                País
+                            </label>
+                            <select 
+                                id="pais" 
+                                name="pais" 
+                                autocomplete="country-name"
+                            >
+                                <option value="México" selected>México</option>
+                                <option value="Estados Unidos">Estados Unidos</option>
+                                <option value="Canadá">Canadá</option>
+                                <option value="Guatemala">Guatemala</option>
+                                <option value="Colombia">Colombia</option>
+                                <option value="España">España</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="estado">
+                                Estado / Provincia
+                            </label>
+                            <select 
+                                id="estado" 
+                                name="estado" 
+                                autocomplete="address-level1"
+                            >
+                                <option value="">-- Selecciona un estado --</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="ciudad">
+                                Ciudad
+                            </label>
+                            <select 
+                                id="ciudad" 
+                                name="ciudad" 
+                                autocomplete="address-level2"
+                            >
+                                <option value="">-- Selecciona primero un estado --</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="codigoPostal">
+                                Código postal
+                            </label>
+                            <input 
+                                type="text" 
+                                id="codigoPostal" 
+                                name="codigoPostal" 
+                                placeholder="01234" 
+                                autocomplete="postal-code"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group checkbox-terms">
+                        <label for="terminos">
+                            <input 
+                                type="checkbox" 
+                                id="terminos" 
+                                name="terminos" 
+                                required
+                            > 
+                            Acepto los términos y condiciones del uso de la plataforma <strong>MecaGest</strong>.
+                        </label>
+                    </div>
+
+                    <div class="btn-group">
+                        <button 
+                            type="button" 
+                            class="btn btn-secondary" 
+                            onclick="irAPasoValidado(3)"
+                        >
+                            &larr; Anterior
+                        </button>
+                        <div>
+                            <button 
+                                type="button" 
+                                class="btn btn-secondary btn-limpiar"
+                            >
+                                Limpiar formulario
+                            </button>
+                            <button 
+                                type="button" 
+                                class="btn btn-submit"
+                                onclick="finalizarYRegistrarCita()"
+                            >
+                                Enviar solicitud
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+            </form>
+
+        </div>
+
+        <!-- =========================================================
+             APARTADO 2: VISUALIZACIÓN DE CITAS
+             ========================================================= -->
+        <div id="apartado-citas" class="panel-apartado">
+
+            <section class="citas-section">
+                <form 
+                    id="formCitas" 
+                    action="" 
+                    method="GET"
+                >
+                    <fieldset class="citas-fieldset">
+                        <legend>
+                            Visualización de Citas por Mes o Semana:
+                        </legend>
+                        
+                        <div class="citas-filter">
+                            <label>
+                                Por favor elige el filtro:
+                            </label>
+                            <label style="margin-left: 8px;">
+                                <input 
+                                    type="radio" 
+                                    name="tipoFiltroCitas" 
+                                    value="mes" 
+                                    checked 
+                                    onchange="cambiarFiltroCitas(this.value)"
+                                > 
+                                Mes
+                            </label>
+                            <label style="margin-left: 8px;">
+                                <input 
+                                    type="radio" 
+                                    name="tipoFiltroCitas" 
+                                    value="semana" 
+                                    onchange="cambiarFiltroCitas(this.value)"
+                                > 
+                                Semana
+                            </label>
+
+                            <span id="filtro-mes-box" style="margin-left: 12px;">
+                                <label for="mesCitas">
+                                    Por favor elige el mes:
+                                </label>
+                                <input 
+                                    type="month" 
+                                    id="mesCitas" 
+                                    name="mesCitas"
+                                    value="2026-10"
+                                >
+                            </span>
+
+                            <span id="filtro-semana-box" style="display: none; margin-left: 12px;">
+                                <label for="semanaCitas">
+                                    Por favor elige la semana:
+                                </label>
+                                <input 
+                                    type="week" 
+                                    id="semanaCitas" 
+                                    name="semanaCitas"
+                                    value="2026-W41"
+                                >
+                            </span>
+
+                            <button 
+                                type="button" 
+                                id="verCitas" 
+                                class="btn btn-primary btn-inline-margin"
+                            >
+                                Ver Citas
+                            </button>
+                        </div>
+
+                        <br>
+                        <h4 id="tituloPeriodoCitas">
+                            Las citas programadas para Octubre de 2026 son:
+                        </h4>
+                        <br>
+
+                        <div class="table-responsive">
+                            <table class="tabla-citas">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Nombre del Cliente y Vehículo</th>
+                                        <th>Descripción de la Reparación</th>
+                                        <th>Fecha Programada</th>
+                                        <th>Estatus Actual</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bodyTablaCitas">
+                                    <tr data-mes="2026-10" onclick="seleccionarCita(this)">
+                                        <td>1</td>
+                                        <td>Cita de entrega de unidad reparada con el cliente: Mauricio Mejía, Unidad: Volkswagen, Jetta 2020</td>
+                                        <td>Se realizó un cambio de bujías, la unidad está lista para entrega</td>
+                                        <td>10 de Octubre de 2026</td>
+                                        <td><span class="badge badge-success">Atendida</span></td>
+                                    </tr>
+                                    <tr data-mes="2026-10" onclick="seleccionarCita(this)">
+                                        <td>2</td>
+                                        <td>Cita de valoración con el cliente: Marco A. Ramírez, Unidad: Renault, Duster 2018</td>
+                                        <td>El cliente solicita una revisión del cuerpo de aceleración de la unidad para posible mantenimiento preventivo.</td>
+                                        <td>20 de Octubre de 2026</td>
+                                        <td><span class="badge badge-warning">Programada</span></td>
+                                    </tr>
+                                    <tr data-mes="2026-10" onclick="seleccionarCita(this)">
+                                        <td>3</td>
+                                        <td>Cita de revisión con el cliente: Mauricio Mejía, Unidad: Volkswagen, Jetta 2020</td>
+                                        <td>A la unidad se le hicieron cambio de bujías, pero el cliente reporta un sonido extraño.</td>
+                                        <td>17 de Octubre de 2026</td>
+                                        <td><span class="badge badge-warning">Programada</span></td>
+                                    </tr>
+                                    <tr data-mes="2026-10" onclick="seleccionarCita(this)">
+                                        <td>4</td>
+                                        <td>Cita de valoración con el cliente: Alejandro Romero, Unidad: Toyota, Hilux 2011</td>
+                                        <td>El cliente solicita una revisión del cuerpo de aceleración de la unidad para posible mantenimiento correctivo.</td>
+                                        <td>25 de Octubre de 2026</td>
+                                        <td><span class="badge badge-danger">Cancelada</span></td>
+                                    </tr>
+                                    <tr data-mes="2026-10" onclick="seleccionarCita(this)">
+                                        <td>5</td>
+                                        <td>Cita de valoración con el cliente: Alejandro Romero, Unidad: Toyota, Hilux 2011</td>
+                                        <td>El cliente solicita una revisión del cuerpo de aceleración de la unidad para posible mantenimiento correctivo.</td>
+                                        <td>28 de Octubre de 2026</td>
+                                        <td><span class="badge badge-info">Reprogramada</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </fieldset>
+                </form>
+            </section>
+
+        </div>
+
+        <!-- =========================================================
+             APARTADO 3: REFACCIONES Y HERRAMIENTAS
+             ========================================================= -->
+        <div id="apartado-herramientas" class="panel-apartado">
+
+            <section class="citas-section">
+                <fieldset class="citas-fieldset">
+                    <legend>
+                        Solicitud de Refacciones y Herramientas:
+                    </legend>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>
+                                Categoría de Recurso:
+                            </label>
+                            <div style="margin-top: 6px;">
+                                <label style="margin-right: 15px;">
+                                    <input 
+                                        type="radio" 
+                                        name="catRecurso" 
+                                        value="Refacción" 
+                                        checked
+                                    > 
+                                    Refacción
+                                </label>
+                                <label>
+                                    <input 
+                                        type="radio" 
+                                        name="catRecurso" 
+                                        value="Herramienta"
+                                    > 
+                                    Herramienta
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="selectPieza">
+                                Elige la pieza:
+                            </label>
+                            <select id="selectPieza" name="selectPieza">
+                                <option value="Pistones">Pistones</option>
+                                <option value="Bujías">Bujías</option>
+                                <option value="Llave combinada">Llave combinada</option>
+                                <option value="Llave dinamométrica">Llave dinamométrica</option>
+                                <option value="Extractor de poleas">Extractor de poleas</option>
+                                <option value="Llave Torx">Llave Torx</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="cantidadRecurso">
+                                Cantidad:
+                            </label>
+                            <input 
+                                type="number" 
+                                id="cantidadRecurso" 
+                                name="cantidadRecurso" 
+                                min="1" 
+                                value="1"
+                            >
+                        </div>
+                        <div class="form-group" style="display: flex; align-items: flex-end;">
+                            <button 
+                                type="button" 
+                                class="btn btn-primary" 
+                                onclick="agregarHerramienta()"
+                            >
+                                Solicitar Herramienta
+                            </button>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="table-responsive">
+                        <table class="tabla-citas" id="tablaHerramientas">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Herramienta</th>
+                                    <th>Categoría</th>
+                                    <th>Cantidad</th>
+                                    <th>Unidad</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bodyHerramientas">
+                                <tr>
+                                    <td>1</td>
+                                    <td>Llave combinada</td>
+                                    <td>Herramienta manual</td>
+                                    <td class="cant-celda">4</td>
+                                    <td>Piezas</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Llave dinamométrica</td>
+                                    <td>Herramienta especializada</td>
+                                    <td class="cant-celda">2</td>
+                                    <td>Piezas</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Extractor de poleas</td>
+                                    <td>Herramienta especializada</td>
+                                    <td class="cant-celda">1</td>
+                                    <td>Juego</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Llave Torx</td>
+                                    <td>Herramienta manual</td>
+                                    <td class="cant-celda">3</td>
+                                    <td>Juegos</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3"><strong>Total de unidades</strong></td>
+                                    <td id="totalUnidades" colspan="2"><strong>10</strong></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </fieldset>
+            </section>
+
+        </div>
+
+        <!-- =========================================================
+             APARTADO 4: CONFIGURACIONES DE LA INTERFAZ
+             ========================================================= -->
+        <div id="apartado-ajustes" class="panel-apartado">
+
+            <div class="config-panel">
+                <h4>
+                    Configuraciones de la Interfaz:
+                </h4>
+                <div class="config-item">
+                    <label for="colorFuente">
+                        Color de la Fuente: 
+                    </label>
+                    <input 
+                        type="color" 
+                        id="colorFuente" 
+                        name="colorFuente" 
+                        value="#000000"
+                    >
+                </div>
+                <div class="config-item">
+                    <label for="colorFondo">
+                        Color de Fondo: 
+                    </label>
+                    <input 
+                        type="color" 
+                        id="colorFondo" 
+                        name="colorFondo" 
+                        value="#f9fafb"
+                    >
+                </div>
+            </div>
+
+        </div>
+
     </main>
+
+    <footer class="main-footer">
+        <p>
+            &copy; 2026 MecaGest Software Desktop. Todos los derechos reservados.
+        </p>
+    </footer>
+
+    <script>
+        function verPassword(idCampo) {
+            const input = document.getElementById(idCampo);
+            input.type = input.type === 'password' ? 'text' : 'password';
+        }
+
+        function cambiarFiltroCitas(tipo) {
+            document.getElementById('filtro-mes-box').style.display = tipo === 'mes' ? 'inline-block' : 'none';
+            document.getElementById('filtro-semana-box').style.display = tipo === 'semana' ? 'inline-block' : 'none';
+        }
+
+        function agregarHerramienta() {
+            const categoria = document.querySelector('input[name="catRecurso"]:checked').value;
+            const pieza = document.getElementById('selectPieza').value;
+            const cantidad = parseInt(document.getElementById('cantidadRecurso').value, 10) || 1;
+            const tbody = document.getElementById('bodyHerramientas');
+            const numFila = tbody.rows.length + 1;
+
+            const fila = tbody.insertRow();
+            fila.innerHTML = `
+                <td>${numFila}</td>
+                <td>${pieza}</td>
+                <td>${categoria}</td>
+                <td class="cant-celda">${cantidad}</td>
+                <td>Piezas</td>
+            `;
+
+            let suma = 0;
+            document.querySelectorAll('.cant-celda').forEach(td => {
+                suma += parseInt(td.textContent, 10);
+            });
+            document.getElementById('totalUnidades').innerHTML = `<strong>${suma}</strong>`;
+        }
+
+        // =========================================================
+        // VALIDACIÓN DE EDAD (MENOR DE EDAD Y FECHA FUTURA)
+        // =========================================================
+        let esMenorDeEdad = false;
+
+        function validarEdadActual() {
+            const inputFecha = document.getElementById('fechaNacimiento');
+            const mensajeEdad = document.getElementById('mensajeEdad');
+            const valor = inputFecha.value;
+
+            inputFecha.classList.remove('input-error-borde');
+            esMenorDeEdad = false;
+
+            if (!valor) {
+                mensajeEdad.textContent = '';
+                return true;
+            }
+
+            const partes = valor.split('-');
+            const anio = parseInt(partes[0], 10);
+            if (partes[0].length < 4 || anio < 1900) {
+                mensajeEdad.textContent = '';
+                return true;
+            }
+
+            const fechaNac = new Date(anio, parseInt(partes[1], 10) - 1, parseInt(partes[2], 10));
+            const hoy = new Date();
+            hoy.setHours(0, 0, 0, 0);
+
+            if (fechaNac > hoy) {
+                inputFecha.classList.add('input-error-borde');
+                mensajeEdad.style.color = '#dc2626';
+                mensajeEdad.textContent = '⚠️ La fecha de nacimiento no puede ser futura.';
+                esMenorDeEdad = true;
+                return false;
+            }
+
+            let edad = hoy.getFullYear() - fechaNac.getFullYear();
+            const difMes = hoy.getMonth() - fechaNac.getMonth();
+            if (difMes < 0 || (difMes === 0 && hoy.getDate() < fechaNac.getDate())) {
+                edad--;
+            }
+
+            if (edad < 18) {
+                inputFecha.classList.add('input-error-borde');
+                mensajeEdad.style.color = '#dc2626';
+                mensajeEdad.textContent = `⚠️ ¡Alto ahí! Tienes ${edad} años y eres MENOR DE EDAD. Debes tener al menos 18 años para registrarte.`;
+                esMenorDeEdad = true;
+                return false;
+            }
+
+            mensajeEdad.style.color = '#15803d';
+            mensajeEdad.textContent = `✔ Edad calculada: ${edad} años (Mayor de edad)`;
+            return true;
+        }
+
+        // =========================================================
+        // VALIDACIÓN BLINDADA DE IMAGEN DE WHATSAPP QR (SOLO FOTOS)
+        // =========================================================
+        function esArchivoDeImagenValido(archivo) {
+            if (!archivo) return false;
+            const extensionesPermitidas = /\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i;
+            const tipoValido = archivo.type && archivo.type.startsWith('image/');
+            const nombreValido = extensionesPermitidas.test(archivo.name);
+            return Boolean(tipoValido && nombreValido);
+        }
+
+        function quitarFotoWhatsApp() {
+            const qrInput = document.getElementById('qrInput');
+            const qrImg = document.getElementById('qrImg');
+            const qrPlaceholder = document.getElementById('qrPlaceholder');
+            const btnQuitarQr = document.getElementById('btnQuitarQr');
+            const errorQrMsg = document.getElementById('errorQrMsg');
+
+            if (qrInput) {
+                qrInput.value = '';
+                qrInput.classList.remove('input-error-borde');
+            }
+            if (qrImg) {
+                qrImg.src = '';
+                qrImg.classList.add('hidden');
+            }
+            if (qrPlaceholder) qrPlaceholder.classList.remove('hidden');
+            if (btnQuitarQr) btnQuitarQr.classList.add('hidden');
+            if (errorQrMsg) {
+                errorQrMsg.classList.add('hidden');
+                errorQrMsg.textContent = '';
+            }
+        }
+
+        function procesarArchivoWhatsApp(e) {
+            const qrInput = e.target;
+            const archivo = qrInput.files[0];
+            const qrImg = document.getElementById('qrImg');
+            const qrPlaceholder = document.getElementById('qrPlaceholder');
+            const btnQuitarQr = document.getElementById('btnQuitarQr');
+            const errorQrMsg = document.getElementById('errorQrMsg');
+
+            if (!archivo) {
+                quitarFotoWhatsApp();
+                return;
+            }
+
+            if (!esArchivoDeImagenValido(archivo)) {
+                quitarFotoWhatsApp();
+                qrInput.classList.add('input-error-borde');
+                errorQrMsg.textContent = `⚠️ ¡Ey! El archivo "${archivo.name}" NO es una imagen. No puedes subir documentos aquí, selecciona únicamente una foto (JPG, PNG, WEBP, GIF).`;
+                errorQrMsg.classList.remove('hidden');
+                alert(`⚠️ ¡Archivo rechazado!\n\n"${archivo.name}" NO es una imagen.\nPor favor selecciona únicamente una foto válida (JPG, PNG, etc.).`);
+                return;
+            }
+
+            qrInput.classList.remove('input-error-borde');
+            errorQrMsg.classList.add('hidden');
+            errorQrMsg.textContent = '';
+
+            const lector = new FileReader();
+            lector.onload = function (evento) {
+                qrImg.src = evento.target.result;
+                qrImg.classList.remove('hidden');
+                qrPlaceholder.classList.add('hidden');
+                btnQuitarQr.classList.remove('hidden');
+            };
+            lector.readAsDataURL(archivo);
+        }
+
+        window.addEventListener('DOMContentLoaded', function () {
+            const inputFechaViejo = document.getElementById('fechaNacimiento');
+            const mensajeEdad = document.getElementById('mensajeEdad');
+
+            const inputFecha = inputFechaViejo.cloneNode(true);
+            inputFechaViejo.parentNode.replaceChild(inputFecha, inputFechaViejo);
+
+            inputFecha.addEventListener('change', validarEdadActual);
+            inputFecha.addEventListener('blur', validarEdadActual);
+            validarEdadActual();
+
+            const qrInputViejo = document.getElementById('qrInput');
+            const qrInputNuevo = qrInputViejo.cloneNode(true);
+            qrInputViejo.parentNode.replaceChild(qrInputNuevo, qrInputViejo);
+            qrInputNuevo.addEventListener('change', procesarArchivoWhatsApp);
+
+            document.querySelectorAll('.btn-limpiar').forEach(btn => {
+                const nuevoBtn = btn.cloneNode(true);
+                btn.parentNode.replaceChild(nuevoBtn, btn);
+
+                nuevoBtn.addEventListener('click', function () {
+                    const pasoActual = this.closest('.form-step');
+                    if (!pasoActual) return;
+
+                    pasoActual.querySelectorAll('input, select').forEach(campo => {
+                        if (campo.type === 'checkbox' || campo.type === 'radio') {
+                            campo.checked = false;
+                        } else if (campo.id !== 'pais') {
+                            campo.value = '';
+                        }
+                        campo.classList.remove('input-error-borde');
+                    });
+
+                    if (pasoActual.id === 'step-1') {
+                        mensajeEdad.textContent = '';
+                        esMenorDeEdad = false;
+                    }
+                    if (pasoActual.id === 'step-2') {
+                        quitarFotoWhatsApp();
+                    }
+                });
+            });
+        });
+
+        // =========================================================
+        // VALIDACIÓN DE CONTRASEÑAS Y NAVEGACIÓN ENTRE PASOS
+        // =========================================================
+        const inputPass = document.getElementById('contrasena');
+        const inputConfirmPass = document.getElementById('confirmarContrasena');
+        const errorPassMsg = document.getElementById('errorPassMsg');
+
+        function verificarCoincidenciaPass() {
+            const p1 = inputPass.value;
+            const p2 = inputConfirmPass.value;
+
+            if (p1 === '' || p2 === '') {
+                errorPassMsg.textContent = '⚠️ ¡Oye! Debes escribir y confirmar tu contraseña antes de pasar al siguiente paso.';
+                errorPassMsg.classList.remove('hidden');
+                inputPass.classList.add('input-error-borde');
+                inputConfirmPass.classList.add('input-error-borde');
+                return false;
+            }
+
+            if (p1 !== p2) {
+                errorPassMsg.textContent = '⚠️ ¡Ey! Las contraseñas NO coinciden. Tienen que ser exactamente iguales para poder avanzar.';
+                errorPassMsg.classList.remove('hidden');
+                inputPass.classList.add('input-error-borde');
+                inputConfirmPass.classList.add('input-error-borde');
+                return false;
+            }
+
+            if (!/[A-Z]/.test(p1)) {
+                errorPassMsg.textContent = '⚠️ ¡Falta seguridad! La contraseña debe incluir al menos una letra MAYÚSCULA.';
+                errorPassMsg.classList.remove('hidden');
+                inputPass.classList.add('input-error-borde');
+                return false;
+            }
+
+            errorPassMsg.classList.add('hidden');
+            errorPassMsg.textContent = '';
+            inputPass.classList.remove('input-error-borde');
+            inputConfirmPass.classList.remove('input-error-borde');
+            return true;
+        }
+
+        inputConfirmPass.addEventListener('input', function () {
+            if (inputPass.value !== inputConfirmPass.value) {
+                errorPassMsg.textContent = '⚠️ Las contraseñas aún no coinciden...';
+                errorPassMsg.classList.remove('hidden');
+                inputConfirmPass.classList.add('input-error-borde');
+            } else {
+                errorPassMsg.classList.add('hidden');
+                inputPass.classList.remove('input-error-borde');
+                inputConfirmPass.classList.remove('input-error-borde');
+            }
+        });
+
+        function validarYContinuarPaso4() {
+            if (!verificarCoincidenciaPass()) {
+                alert('⚠️ ¡Alto ahí! Las contraseñas no coinciden o les falta una mayúscula. Corrígelas para poder continuar.');
+                return;
+            }
+            cambiarVistaPaso(4);
+        }
+
+        function irAPasoValidado(destino) {
+            if (destino > 1 && !validarEdadActual()) {
+                cambiarVistaPaso(1);
+                alert('⚠️ ¡Alto ahí! Eres menor de edad (o pusiste una fecha futura). No puedes continuar con el registro hasta ser mayor de 18 años.');
+                return;
+            }
+
+            if (destino === 4) {
+                if (!verificarCoincidenciaPass()) {
+                    cambiarVistaPaso(3);
+                    alert('⚠️ No puedes pasar al paso 4 hasta que tus contraseñas coincidan.');
+                    return;
+                }
+            }
+            cambiarVistaPaso(destino);
+        }
+
+        function cambiarVistaPaso(numPaso) {
+            if (typeof siguientePaso === 'function') {
+                siguientePaso(numPaso);
+            }
+            document.querySelectorAll('.form-step').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.stepper .step').forEach(btn => btn.classList.remove('active'));
+            const secDestino = document.getElementById('step-' + numPaso);
+            const btnDestino = document.getElementById('step-btn-' + numPaso);
+            if (secDestino) secDestino.classList.add('active');
+            if (btnDestino) btnDestino.classList.add('active');
+        }
+
+        // =========================================================
+        // FINALIZAR SOLICITUD Y AGREGARLA A LA TABLA DE CITAS
+        // =========================================================
+        function finalizarYRegistrarCita() {
+            if (!validarEdadActual()) {
+                cambiarVistaPaso(1);
+                alert('⚠️ No se puede completar el registro porque eres menor de edad.');
+                return;
+            }
+
+            if (!verificarCoincidenciaPass()) {
+                cambiarVistaPaso(3);
+                alert('⚠️ Tus contraseñas no coinciden. Revísalas en el Paso 3.');
+                return;
+            }
+
+            const chkTerminos = document.getElementById('terminos');
+            if (!chkTerminos.checked) {
+                alert('⚠️ Debes aceptar los términos y condiciones de MecaGest antes de enviar la solicitud.');
+                chkTerminos.focus();
+                return;
+            }
+
+            const nombre = document.getElementById('nombre').value.trim() || 'Angel Leonardo';
+            const apPaterno = document.getElementById('apPaterno').value.trim() || 'Lemus';
+            const apMaterno = document.getElementById('apMaterno').value.trim() || 'Escamilla';
+            const nombreCompleto = `${nombre} ${apPaterno} ${apMaterno}`.trim();
+
+            const pais = document.getElementById('pais').value;
+            const estado = document.getElementById('estado').value || 'Sin estado';
+            const ciudad = document.getElementById('ciudad').value || 'Sin ciudad';
+            const direccion = document.getElementById('direccion').value.trim() || 'Domicilio registrado en sistema';
+            const telefono = document.getElementById('numTelefonico').value.trim() || '4427394140';
+
+            const tbodyCitas = document.getElementById('bodyTablaCitas');
+            const nuevoNumero = tbodyCitas.rows.length + 1;
+
+            const meses = [
+                'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+                'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+            ];
+            const hoy = new Date();
+            const fechaFormateada = `${hoy.getDate()} de ${meses[hoy.getMonth()]} de ${hoy.getFullYear()}`;
+            const mesData = `${hoy.getFullYear()}-${String(hoy.getMonth() + 1).padStart(2, '0')}`;
+
+            const nuevaFila = tbodyCitas.insertRow();
+            nuevaFila.setAttribute('data-mes', mesData);
+            nuevaFila.setAttribute('onclick', 'seleccionarCita(this)');
+            nuevaFila.style.backgroundColor = '#fef2f2';
+            nuevaFila.innerHTML = `
+                <td>${nuevoNumero}</td>
+                <td>Cita de alta y valoración inicial con el cliente: <strong>${nombreCompleto}</strong> (Tel: ${telefono})</td>
+                <td>Registro de nuevo usuario desde ${ciudad}, ${estado} (${pais}). Dirección: ${direccion}</td>
+                <td>${fechaFormateada}</td>
+                <td><span class="badge badge-warning">Programada</span></td>
+            `;
+
+            alert(`✔ ¡Solicitud enviada correctamente!\n\nTu cita quedó registrada como la No. ${nuevoNumero} a nombre de ${nombreCompleto}.`);
+            document.getElementById('tab-citas').checked = true;
+            nuevaFila.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // =========================================================
+        // CATÁLOGO COMPLETO DE PAÍSES, ESTADOS Y CIUDADES PARA TODOS LOS PAÍSES
+        // =========================================================
+        const catalogoInternacional = {
+            "México": {
+                "Aguascalientes": [{ ciudad: "Aguascalientes", cp: "20000", colonia: "Centro" }],
+                "Baja California": [{ ciudad: "Tijuana", cp: "22000", colonia: "Centro" }, { ciudad: "Mexicali", cp: "21000", colonia: "Centro" }],
+                "Baja California Sur": [{ ciudad: "La Paz", cp: "23000", colonia: "Centro" }, { ciudad: "Cabo San Lucas", cp: "23450", colonia: "Centro" }],
+                "Campeche": [{ ciudad: "Campeche", cp: "24000", colonia: "Centro" }],
+                "Coahuila": [{ ciudad: "Saltillo", cp: "25000", colonia: "Centro" }, { ciudad: "Torreón", cp: "27000", colonia: "Centro" }],
+                "Colima": [{ ciudad: "Colima", cp: "28000", colonia: "Centro" }, { ciudad: "Manzanillo", cp: "28200", colonia: "Centro" }],
+                "Chiapas": [{ ciudad: "Tuxtla Gutiérrez", cp: "29000", colonia: "Centro" }, { ciudad: "San Cristóbal de las Casas", cp: "29200", colonia: "Centro" }],
+                "Chihuahua": [{ ciudad: "Chihuahua", cp: "31000", colonia: "Centro" }, { ciudad: "Ciudad Juárez", cp: "32000", colonia: "Centro" }],
+                "Ciudad de México": [
+                    { ciudad: "Cuauhtémoc", cp: "06000", colonia: "Centro" },
+                    { ciudad: "Coyoacán", cp: "04000", colonia: "Del Carmen" },
+                    { ciudad: "Miguel Hidalgo", cp: "11560", colonia: "Polanco" },
+                    { ciudad: "Benito Juárez", cp: "03100", colonia: "Del Valle" }
+                ],
+                "Durango": [{ ciudad: "Durango", cp: "34000", colonia: "Centro" }],
+                "Guanajuato": [{ ciudad: "León", cp: "37000", colonia: "Centro" }, { ciudad: "Guanajuato", cp: "36000", colonia: "Centro" }],
+                "Guerrero": [{ ciudad: "Chilpancingo", cp: "39000", colonia: "Centro" }, { ciudad: "Acapulco", cp: "39300", colonia: "Centro" }],
+                "Hidalgo": [
+                    { ciudad: "Tulancingo de Bravo", cp: "43600", colonia: "Tulancingo Centro" },
+                    { ciudad: "Pachuca de Soto", cp: "42000", colonia: "Centro" },
+                    { ciudad: "Tizayuca", cp: "43800", colonia: "Centro" },
+                    { ciudad: "Huejutla de Reyes", cp: "43000", colonia: "Centro" }
+                ],
+                "Jalisco": [{ ciudad: "Guadalajara", cp: "44100", colonia: "Centro" }, { ciudad: "Zapopan", cp: "45100", colonia: "Centro" }],
+                "Estado de México": [
+                    { ciudad: "Toluca", cp: "50000", colonia: "Centro" },
+                    { ciudad: "Naucalpan de Juárez", cp: "53000", colonia: "Centro" },
+                    { ciudad: "Ecatepec", cp: "55000", colonia: "San Cristóbal" }
+                ],
+                "Michoacán": [{ ciudad: "Morelia", cp: "58000", colonia: "Centro" }, { ciudad: "Uruapan", cp: "60000", colonia: "Centro" }],
+                "Morelos": [{ ciudad: "Cuernavaca", cp: "62000", colonia: "Centro" }],
+                "Nayarit": [{ ciudad: "Tepic", cp: "63000", colonia: "Centro" }],
+                "Nuevo León": [{ ciudad: "Monterrey", cp: "64000", colonia: "Centro" }, { ciudad: "San Pedro Garza García", cp: "66200", colonia: "Del Valle" }],
+                "Oaxaca": [{ ciudad: "Oaxaca de Juárez", cp: "68000", colonia: "Centro" }],
+                "Puebla": [
+                    { ciudad: "Xicotepec", cp: "73080", colonia: "Xicotepec de Juárez Centro" },
+                    { ciudad: "Huauchinango", cp: "73170", colonia: "Huauchinango Centro" },
+                    { ciudad: "Puebla", cp: "72000", colonia: "Centro" },
+                    { ciudad: "Tehuacán", cp: "75700", colonia: "Centro" },
+                    { ciudad: "Zacatlán", cp: "73310", colonia: "Centro" },
+                    { ciudad: "Chignahuapan", cp: "73300", colonia: "Centro" }
+                ],
+                "Querétaro": [{ ciudad: "Querétaro", cp: "76000", colonia: "Centro" }, { ciudad: "San Juan del Río", cp: "76800", colonia: "Centro" }],
+                "Quintana Roo": [{ ciudad: "Cancún", cp: "77500", colonia: "Centro" }, { ciudad: "Chetumal", cp: "77000", colonia: "Centro" }],
+                "San Luis Potosí": [{ ciudad: "San Luis Potosí", cp: "78000", colonia: "Centro" }],
+                "Sinaloa": [{ ciudad: "Culiacán", cp: "80000", colonia: "Centro" }, { ciudad: "Mazatlán", cp: "82000", colonia: "Centro" }],
+                "Sonora": [{ ciudad: "Hermosillo", cp: "83000", colonia: "Centro" }],
+                "Tabasco": [{ ciudad: "Villahermosa", cp: "86000", colonia: "Centro" }],
+                "Tamaulipas": [{ ciudad: "Ciudad Victoria", cp: "87000", colonia: "Centro" }, { ciudad: "Tampico", cp: "89000", colonia: "Centro" }],
+                "Tlaxcala": [{ ciudad: "Tlaxcala", cp: "90000", colonia: "Centro" }],
+                "Veracruz": [
+                    { ciudad: "Xalapa", cp: "91000", colonia: "Centro" },
+                    { ciudad: "Veracruz", cp: "91700", colonia: "Centro" },
+                    { ciudad: "Poza Rica", cp: "93200", colonia: "Centro" },
+                    { ciudad: "Tuxpan", cp: "92800", colonia: "Centro" }
+                ],
+                "Yucatán": [{ ciudad: "Mérida", cp: "97000", colonia: "Centro" }],
+                "Zacatecas": [{ ciudad: "Zacatecas", cp: "98000", colonia: "Centro" }]
+            },
+            "Estados Unidos": {
+                "California": [
+                    { ciudad: "Los Ángeles", cp: "90001", colonia: "Downtown" },
+                    { ciudad: "San Diego", cp: "92101", colonia: "Gaslamp" },
+                    { ciudad: "San Francisco", cp: "94102", colonia: "Civic Center" }
+                ],
+                "Texas": [
+                    { ciudad: "Houston", cp: "77001", colonia: "Downtown" },
+                    { ciudad: "Dallas", cp: "75201", colonia: "Arts District" },
+                    { ciudad: "Austin", cp: "78701", colonia: "Downtown" },
+                    { ciudad: "San Antonio", cp: "78205", colonia: "Alamo Plaza" }
+                ],
+                "Nueva York": [
+                    { ciudad: "Nueva York", cp: "10001", colonia: "Manhattan" },
+                    { ciudad: "Búfalo", cp: "14201", colonia: "Downtown" }
+                ],
+                "Florida": [
+                    { ciudad: "Miami", cp: "33101", colonia: "Brickell" },
+                    { ciudad: "Orlando", cp: "32801", colonia: "Downtown" }
+                ],
+                "Illinois": [
+                    { ciudad: "Chicago", cp: "60601", colonia: "The Loop" }
+                ],
+                "Arizona": [
+                    { ciudad: "Phoenix", cp: "85001", colonia: "Downtown" }
+                ]
+            },
+            "Canadá": {
+                "Ontario": [
+                    { ciudad: "Toronto", cp: "M5H 2N2", colonia: "Downtown" },
+                    { ciudad: "Ottawa", cp: "K1P 1J1", colonia: "Centretown" }
+                ],
+                "Quebec": [
+                    { ciudad: "Montreal", cp: "H2Y 1C6", colonia: "Vieux-Montréal" },
+                    { ciudad: "Quebec", cp: "G1R 4P5", colonia: "Vieux-Québec" }
+                ],
+                "Columbia Británica": [
+                    { ciudad: "Vancouver", cp: "V6B 1A1", colonia: "Gastown" },
+                    { ciudad: "Victoria", cp: "V8W 1W5", colonia: "Inner Harbour" }
+                ],
+                "Alberta": [
+                    { ciudad: "Calgary", cp: "T2P 1J9", colonia: "Downtown" },
+                    { ciudad: "Edmonton", cp: "T5J 0N3", colonia: "Downtown" }
+                ]
+            },
+            "Guatemala": {
+                "Guatemala": [
+                    { ciudad: "Ciudad de Guatemala", cp: "01001", colonia: "Zona 1" },
+                    { ciudad: "Mixco", cp: "01057", colonia: "Centro" }
+                ],
+                "Sacatepéquez": [
+                    { ciudad: "Antigua Guatemala", cp: "03001", colonia: "Centro Histórico" }
+                ],
+                "Quetzaltenango": [
+                    { ciudad: "Quetzaltenango", cp: "09001", colonia: "Zona 1" }
+                ],
+                "Petén": [
+                    { ciudad: "Flores", cp: "17001", colonia: "Isla de Flores" }
+                ]
+            },
+            "Colombia": {
+                "Bogotá D.C.": [
+                    { ciudad: "Bogotá", cp: "110111", colonia: "La Candelaria" }
+                ],
+                "Antioquia": [
+                    { ciudad: "Medellín", cp: "050001", colonia: "El Poblado" },
+                    { ciudad: "Envigado", cp: "055420", colonia: "Centro" }
+                ],
+                "Valle del Cauca": [
+                    { ciudad: "Cali", cp: "760001", colonia: "San Antonio" }
+                ],
+                "Atlántico": [
+                    { ciudad: "Barranquilla", cp: "080001", colonia: "El Prado" }
+                ],
+                "Bolívar": [
+                    { ciudad: "Cartagena", cp: "130001", colonia: "Centro Histórico" }
+                ]
+            },
+            "España": {
+                "Comunidad de Madrid": [
+                    { ciudad: "Madrid", cp: "28001", colonia: "Salamanca" },
+                    { ciudad: "Alcalá de Henares", cp: "28801", colonia: "Centro" }
+                ],
+                "Cataluña": [
+                    { ciudad: "Barcelona", cp: "08001", colonia: "Ciutat Vella" },
+                    { ciudad: "Girona", cp: "17001", colonia: "Barri Vell" }
+                ],
+                "Andalucía": [
+                    { ciudad: "Sevilla", cp: "41001", colonia: "Casco Antiguo" },
+                    { ciudad: "Málaga", cp: "29001", colonia: "Centro" }
+                ],
+                "Comunidad Valenciana": [
+                    { ciudad: "Valencia", cp: "46001", colonia: "Ciutat Vella" }
+                ]
+            }
+        };
+
+        const selectPais = document.getElementById('pais');
+        const selectEstado = document.getElementById('estado');
+        const selectCiudad = document.getElementById('ciudad');
+        const inputCp = document.getElementById('codigoPostal');
+
+        function cargarEstadosDelPais() {
+            const paisActual = selectPais.value;
+            const estadosObj = catalogoInternacional[paisActual] || {};
+            const listaEstados = Object.keys(estadosObj);
+
+            selectEstado.innerHTML = '<option value="">-- Selecciona un estado --</option>';
+            selectCiudad.innerHTML = '<option value="">-- Selecciona primero un estado --</option>';
+            inputCp.value = '';
+
+            listaEstados.forEach(estado => {
+                const option = document.createElement('option');
+                option.value = estado;
+                option.textContent = estado;
+                selectEstado.appendChild(option);
+            });
+        }
+
+        selectPais.addEventListener('change', cargarEstadosDelPais);
+
+        selectEstado.addEventListener('change', function () {
+            const paisActual = selectPais.value;
+            const estadoElegido = this.value;
+            const ciudadesLista = (catalogoInternacional[paisActual] && catalogoInternacional[paisActual][estadoElegido]) || [];
+
+            selectCiudad.innerHTML = '<option value="">-- Selecciona una ciudad --</option>';
+            inputCp.value = '';
+
+            ciudadesLista.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item.ciudad;
+                option.textContent = `${item.ciudad} (${item.colonia})`;
+                selectCiudad.appendChild(option);
+            });
+        });
+
+        selectCiudad.addEventListener('change', function () {
+            const paisActual = selectPais.value;
+            const estadoElegido = selectEstado.value;
+            const ciudadElegida = this.value;
+            const ciudadesLista = (catalogoInternacional[paisActual] && catalogoInternacional[paisActual][estadoElegido]) || [];
+
+            const encontrado = ciudadesLista.find(item => item.ciudad === ciudadElegida);
+            if (encontrado) {
+                inputCp.value = encontrado.cp;
+            }
+        });
+
+        cargarEstadosDelPais();
+    </script>
+
 </body>
 </html>
